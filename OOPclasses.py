@@ -1,21 +1,15 @@
 #!/opt/software/anaconda/python-3.10.9/bin/python
 
-"""
-Version: Python 3.10.9
-
-Description: Using OOP classes to represent and manipulate cartesian vectors.
-
-Date: 12/02/2026
-
-Author: Nicholas Young
-"""
-
-iimport math
+import math
 import numpy as np
 
+# CREATING VECTOR CLASS
 
 class vector:
+    
    type = 'Vector'
+   
+   #INTITIAL TRAITS
 
    def __init__(self, xval, yval, zval):
        
@@ -25,9 +19,7 @@ class vector:
        
    def magnitude(self):
 
-      mag = np.sqrt((self.xval*self.xval) + (self.yval*self.yval) + (self.zval*self.zval))
-      
-      return mag
+      return np.sqrt((self.xval*self.xval) + (self.yval*self.yval) + (self.zval*self.zval))
   
    def unitvectors(self):
        
@@ -44,7 +36,41 @@ class vector:
        gamma = math.degrees(math.acos(uz))
        
        return alpha, beta, gamma
+   
+    
+   #VECTOR OPERATIONS
+    
+   def addition(self, self2):
+       
+       xadd = self.xval + self2.xval
+       yadd = self.yval + self2.yval
+       zadd = self.zval + self2.zval
+        
+       return vector(xadd, yadd, zadd)
+    
+   def subtraction(self, self2):
+       
+       xsub = self2.xval - self.xval
+       ysub = self2.yval - self.yval
+       zsub = self2.zval - self.zval
+       
+       return vector(xsub, ysub, zsub)
+    
+   def scalarproduct(self, self2):
+        
+       return vector((self2.xval * self.xval) +
+                     (self2.yval * self.yval) +
+                     (self2.zval * self.zval))
+    
+   def vectorproduct(self, self2):
+       
+       xvp = self.yval * self2.zval - self.zval * self2.yval
+       yvp = self.zval * self2.xval - self.xval * self2.zval
+       zvp = self.xval * self2.yval - self.yval * self2.xval
+       
+       return vector(xvp, yvp, zvp)
 
+#test vector
 v1 = vector(3, 5, 6)
 
 print(f"Vector Coords are: {v1.xval, v1.yval, v1.zval}") 
@@ -54,4 +80,27 @@ ux1, uy1, uz1 = v1.unitvectors()
 print(f"Unit Vectors are (x, y, z): {ux1, uy1, uz1}")
 
 alpha1, beta1, gamma1 = v1.direction()
-print(f"Vector is of direction: {alpha1, beta1, gamma1} degrees")
+print(f"Vector is of direction (alpha, beta, gamma): {alpha1, beta1, gamma1} degrees")
+
+#VECTOR OPERATIONS (ADDITION, SUBTRACTION, DOT/SCALAR PRODUCT)
+
+dimensions = 3
+
+def create_vector(dimensions):
+    return [np.random.randint(0, 100) for x in range(dimensions)]
+
+v2 = vector(*create_vector(dimensions))
+v3 = vector(*create_vector(dimensions)) 
+
+print(f"Vector 2 properties: {v2.xval, v2.yval, v2.zval} of magnitude {v2.magnitude():.3f}") 
+print(f"Vector 3 properties: {v3.xval, v3.yval, v3.zval} of magnitude {v3.magnitude():.3f}")
+
+vadd32 = v3.addition(v2)
+vsub32 = v3.subtraction(v2)
+vsp32 = v3.scalarproduct(v2)
+vvp32 = v3.vectorproduct(v2)
+
+print(f'Addition = {vadd32}')
+print(f'Subtraction = {vsub32}')
+print(f'Scalar Product = {vsp32}')
+print(f'Vector product = {vvp32}')
