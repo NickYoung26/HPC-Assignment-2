@@ -9,7 +9,7 @@ class vector:
     
    type = 'Vector'
    
-   #INTITIAL TRAITS
+   # VECTOR TRAITS
 
    def __init__(self, xval, yval, zval):
        
@@ -95,12 +95,12 @@ v3 = vector(*create_vector(dimensions))
 print(f"Vector 2 properties: {v2.xval, v2.yval, v2.zval} of magnitude {v2.magnitude():.3f}") 
 print(f"Vector 3 properties: {v3.xval, v3.yval, v3.zval} of magnitude {v3.magnitude():.3f}")
 
-vadd32 = v3.addition(v2)
-vsub32 = v3.subtraction(v2)
-vsp32 = v3.scalarproduct(v2)
-vvp32 = v3.vectorproduct(v2)
+vadd32 = v2.addition(v3)
+vsub32 = v2.subtraction(v3)
+vsp32 = v2.scalarproduct(v3)
+vvp32 = v2.vectorproduct(v3)
 
-print(f'Addition = {vadd32}')
-print(f'Subtraction = {vsub32}')
+print(f'Addition = {vadd32.xval, vadd32.yval, vadd32.zval}')
+print(f'Subtraction = {vsub32.xval, vsub32.yval, vsub32.zval}')
 print(f'Scalar Product = {vsp32}')
-print(f'Vector product = {vvp32}')
+print(f'Vector product = {vvp32.xval, vvp32.yval, vvp32.zval}')
