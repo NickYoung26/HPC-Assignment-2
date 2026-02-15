@@ -1,4 +1,5 @@
 #!/opt/software/anaconda/python-3.10.9/bin/python
+
 """
 Version: Python 3.10.9
 
@@ -116,9 +117,11 @@ print(f"Unit Vectors are (x, y, z): {ux1, uy1, uz1}")
 
 alpha1, beta1, gamma1 = v1.direction()
 print(f"Vector is of direction (alpha, beta, gamma): {alpha1:.2f}, {beta1:.2f}, {gamma1:.2f} degrees")
+print('')
 
 #TASK1
 #VECTOR OPERATIONS (ADDITION, SUBTRACTION, DOT/SCALAR PRODUCT) 
+print('#################### TASK 1 TEST ####################')
 
 dimensions = 3
 
@@ -152,10 +155,12 @@ print(f'Scalar Product = {vsp32:.2f}')
 print(f'Vector product = {vvp32.xval, vvp32.yval, vvp32.zval}')
 print(f'Vector product magnitude = {vvpm32:.2f}')
 print(f'Vector product direction = {vvpd32:.2f} degrees')
+print('')
 
 #TASK2
 #CREATE VECTORS FROM COORDINATES
-
+print('#################### TASK 2 RESULTS ####################')
+print('')
 ###############################################################################
 ################################### TRIANGLE 1 ################################
 ###############################################################################
@@ -179,7 +184,7 @@ tri1angleB = tri1AB.productdirection(tri1BC)
 tri1angleC = tri1BC.productdirection(tri1CA)
 tri1angleA = tri1CA.productdirection(tri1AB)
 
-print(f'Triangle 1 angles A,B,C = {tri1angleA:.2f}, {tri1angleB:.2f}, {tri1angleC:.2f}')
+print(f'Triangle 1 angles A,B,C = {tri1angleA:.2f}, {tri1angleB:.2f}, {tri1angleC:.2f} degrees')
 print('')
 
 ###############################################################################
@@ -205,7 +210,7 @@ tri2angleB = tri2AB.productdirection(tri2BC)
 tri2angleC = tri2BC.productdirection(tri2CA)
 tri2angleA = tri2CA.productdirection(tri2AB)
 
-print(f'Triangle 2 angles A,B,C = {tri2angleA:.2f}, {tri2angleB:.2f}, {tri2angleC:.2f}')
+print(f'Triangle 2 angles A,B,C = {tri2angleA:.2f}, {tri2angleB:.2f}, {tri2angleC:.2f} degrees')
 print('')
 
 ###############################################################################
@@ -231,7 +236,7 @@ tri3angleB = tri3AB.productdirection(tri3BC)
 tri3angleC = tri3BC.productdirection(tri3CA)
 tri3angleA = tri3CA.productdirection(tri3AB)
 
-print(f'Triangle 3 angles A,B,C = {tri3angleA:.2f}, {tri3angleB:.2f}, {tri3angleC:.2f}')
+print(f'Triangle 3 angles A,B,C = {tri3angleA:.2f}, {tri3angleB:.2f}, {tri3angleC:.2f} degrees')
 print('')
 
 ###############################################################################
@@ -257,7 +262,7 @@ tri4angleB = tri4AB.productdirection(tri4BC)
 tri4angleC = tri4BC.productdirection(tri4CA)
 tri4angleA = tri4CA.productdirection(tri4AB)
 
-print(f'Triangle 4 angles A,B,C = {tri4angleA:.2f}, {tri4angleB:.2f}, {tri4angleC:.2f}')
+print(f'Triangle 4 angles A,B,C = {tri4angleA:.2f}, {tri4angleB:.2f}, {tri4angleC:.2f} degrees')
 
 #TASK 3
 
