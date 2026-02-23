@@ -358,4 +358,70 @@ def hansen_N(x, y, z):
     phase = np.exp(1j * np.pi * z)
     return complexvector(0.0 + 0.0j, phase, 0.0 + 0.0j)
 
+points = [
+    (1.0, 1.0, 1.0),
+    (0.0, 0.0, 0.0)]
+
+k_mag = np.pi
+
+for (x, y, z) in points:
+    
+    print(f'\nPoint (x,y,z) = ({x},{y},{z})')
+    print('')
+    
+    M = hansen_M(x, y, z)
+    N = hansen_N(x, y, z)
+    
+    print('M =', vecprint(M))
+    print('N =', vecprint(N))
+    print('')
+
+    divM = complexvector.divergence(hansen_M, x, y, z)
+    divN = complexvector.divergence(hansen_N, x, y, z)
+
+    print('Divergence M =', cplexprint(divM))
+    print('Divergence N =', cplexprint(divN))
+    print('')
+
+    curlM = complexvector.curl(hansen_M, x, y, z)
+    curlN = complexvector.curl(hansen_N, x, y, z)
+    
+    print('Curl M =', vecprint(curlM))
+    print('Curl N =', vecprint(curlN))
+    print('')
+    
+    M_kmag_div = complexvector(M.xval/k_mag, M.yval/k_mag, M.zval/k_mag)
+    N_kmag_div = complexvector(N.xval/k_mag, N.yval/k_mag, N.zval/k_mag)
+    
+    print('M/mag(k) =', vecprint(M_kmag_div))
+    print('N/mag(k) =', vecprint(N_kmag_div))
+    print('')
+    
+    print('Proof of Lies')
+    print('M/mag(k) - curl(N)', vecprint(M_kmag_div.subtraction(curlN)))
+    print('N/mag(k) - curl(N)', vecprint(N_kmag_div.subtraction(curlM)))
+    print('')
+    
+    M_kmag_times = complexvector(M.xval*k_mag*-1j, M.yval*k_mag*-1j, M.zval*k_mag*-1j)
+    N_kmag_times = complexvector(N.xval*k_mag*1j, N.yval*k_mag*1j, N.zval*k_mag*1j)
+    
+    print('M*mag(k) =', vecprint(M_kmag_times))
+    print('N*mag(k) =', vecprint(N_kmag_times))
+    print('')
+    
+    print('Proof of Truth')
+    print('M*mag(k) - curl(N)', vecprint(curlN.subtraction(M_kmag_times)))
+    print('N*mag(k) - curl(N)', vecprint(curlM.subtraction(N_kmag_times)))
+    print('')
+     
+    MN_dot = M.cscalarproduct(N)
+    MN_cross = M.vectorproduct(N)
+    MN_cross_mag = MN_cross.magnitude()
+    
+    print('Proof its not the vectors (True Orthognality)')
+    print('MN Dot Product =', cplexprint(MN_dot))
+    print('MN Vector Product =', vecprint(MN_cross))
+    print('MN Vector Product Magnitude =', cplexprint(MN_cross_mag))
+    print('')
+
 
