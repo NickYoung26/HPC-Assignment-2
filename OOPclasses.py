@@ -119,8 +119,11 @@ alpha1, beta1, gamma1 = v1.direction()
 print(f"Vector is of direction (alpha, beta, gamma): {alpha1:.2f}, {beta1:.2f}, {gamma1:.2f} degrees")
 print('')
 
-#TASK1
+###############################################################################
+################################### TASK1 #####################################
+###############################################################################
 #VECTOR OPERATIONS (ADDITION, SUBTRACTION, DOT/SCALAR PRODUCT) 
+
 print('#################### TASK 1 TEST ####################')
 
 dimensions = 3
@@ -157,13 +160,17 @@ print(f'Vector product magnitude = {vvpm32:.2f}')
 print(f'Vector product direction = {vvpd32:.2f} degrees')
 print('')
 
-#TASK2
+###############################################################################
+################################### TASK2 #####################################
+###############################################################################
 #CREATE VECTORS FROM COORDINATES
+
 print('#################### TASK 2 RESULTS ####################')
 print('')
-###############################################################################
-################################### TRIANGLE 1 ################################
-###############################################################################
+
+
+########## TRIANGLE 1 ###########
+
 
 tri1A = vector(0,0,0)
 tri1B = vector(1,0,0)
@@ -187,9 +194,7 @@ tri1angleA = tri1CA.productdirection(tri1AB)
 print(f'Triangle 1 angles A,B,C = {tri1angleA:.2f}, {tri1angleB:.2f}, {tri1angleC:.2f} degrees')
 print('')
 
-###############################################################################
-################################### TRIANGLE 2 ################################
-###############################################################################
+########## TRIANGLE 2 ###########
 
 tri2A = vector(-1,-1,-1)
 tri2B = vector(0,-1,-1)
@@ -213,9 +218,7 @@ tri2angleA = tri2CA.productdirection(tri2AB)
 print(f'Triangle 2 angles A,B,C = {tri2angleA:.2f}, {tri2angleB:.2f}, {tri2angleC:.2f} degrees')
 print('')
 
-###############################################################################
-################################### TRIANGLE 3 ################################
-###############################################################################
+########## TRIANGLE 3 ###########
 
 tri3A = vector(1,0,0)
 tri3B = vector(0,0,1)
@@ -239,9 +242,7 @@ tri3angleA = tri3CA.productdirection(tri3AB)
 print(f'Triangle 3 angles A,B,C = {tri3angleA:.2f}, {tri3angleB:.2f}, {tri3angleC:.2f} degrees')
 print('')
 
-###############################################################################
-################################### TRIANGLE 4 ################################
-###############################################################################
+########## TRIANGLE 4 ###########
 
 tri4A = vector(0,0,0)
 tri4B = vector(1,-1,0)
@@ -264,6 +265,97 @@ tri4angleA = tri4CA.productdirection(tri4AB)
 
 print(f'Triangle 4 angles A,B,C = {tri4angleA:.2f}, {tri4angleB:.2f}, {tri4angleC:.2f} degrees')
 
-#TASK 3
+###############################################################################
+################################### TASK3 #####################################
+###############################################################################
+
+#NICE FUNCTIONS TO NEATLY PRINT COMPLEX NUMBERS
+
+print('#################### TASK 3 RESULTS ####################')
+print('')
+
+def cplexprint(z, ndp=2):
+    sign = "+" if z.imag >= 0 else "-"
+    return f"{z.real:.{ndp}f} {sign} {abs(z.imag):.{ndp}f}j"
+    
+def vecprint(V, ndp=2):
+    return f"({cplexprint(V.xval, ndp)}, {cplexprint(V.yval, ndp)}, {cplexprint(V.zval, ndp)})"
+
+class complexvector(vector):
+    
+    type: 'ComplexVector' 
+    
+    def conjugate(self):
+        
+        "Calculates the complex conjugate of a complex vector of components x, y and z."
+        
+        return complexvector(np.conj(self.xval), np.conj(self.yval), np.conj(self.zval))
+
+    def cscalarproduct(self, self2):
+        
+        "Scalar product of two complex vectors of components x, y and z"
+        
+        return (np.conj(self.xval)*self2.xval +
+                np.conj(self.yval)*self2.yval +
+                np.conj(self.zval)*self2.zval)
+    
+    @staticmethod
+    def divergence(F, x, y, z, h=1e-6):
+        
+        Fx_p = F(x+h, y, z).xval
+        Fx_m = F(x-h, y, z).xval
+        dFxdx = (Fx_p - Fx_m) / (2*h)
+
+        Fy_p = F(x, y+h, z).yval
+        Fy_m = F(x, y-h, z).yval
+        dFydy = (Fy_p - Fy_m) / (2*h)
+
+        Fz_p = F(x, y, z+h).zval
+        Fz_m = F(x, y, z-h).zval
+        dFzdz = (Fz_p - Fz_m) / (2*h)
+
+        return dFxdx + dFydy + dFzdz
+    
+    @staticmethod
+    def curl(F, x, y, z, h=1e-6):
+        
+        Fz_y_p = F(x, y+h, z).zval
+        Fz_y_m = F(x, y-h, z).zval
+        dFzdy = (Fz_y_p - Fz_y_m) / (2*h)
+
+        Fy_z_p = F(x, y, z+h).yval
+        Fy_z_m = F(x, y, z-h).yval
+        dFydz = (Fy_z_p - Fy_z_m) / (2*h)
+
+        Fx_z_p = F(x, y, z+h).xval
+        Fx_z_m = F(x, y, z-h).xval
+        dFxdz = (Fx_z_p - Fx_z_m) / (2*h)
+
+        Fz_x_p = F(x+h, y, z).zval
+        Fz_x_m = F(x-h, y, z).zval
+        dFzdx = (Fz_x_p - Fz_x_m) / (2*h)
+
+        Fy_x_p = F(x+h, y, z).yval
+        Fy_x_m = F(x-h, y, z).yval
+        dFydx = (Fy_x_p - Fy_x_m) / (2*h)
+
+        Fx_y_p = F(x, y+h, z).xval
+        Fx_y_m = F(x, y-h, z).xval
+        dFxdy = (Fx_y_p - Fx_y_m) / (2*h)
+
+        return complexvector(dFzdy - dFydz,
+                              dFxdz - dFzdx,
+                              dFydx - dFxdy)
+   
+# HANSEN VECTORS
+
+def hansen_M(x, y, z):
+    
+    phase = np.exp(1j * np.pi * z)
+    return complexvector(phase, 0.0 + 0.0j, 0.0 + 0.0j)
+
+def hansen_N(x, y, z):
+    phase = np.exp(1j * np.pi * z)
+    return complexvector(0.0 + 0.0j, phase, 0.0 + 0.0j)
 
 
