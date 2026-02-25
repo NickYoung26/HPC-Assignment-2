@@ -308,5 +308,5 @@ for z0 in (z_values):
     trueNproofsym = N_valtrue - curlM_val
 
     print('M*mag(k) - curl(N) =', vecprintsym(trueMproofsym))
-    print('N*mag(k) - curl(N) =', vecprintsym(trueNproofsym))
+    print('N*mag(k) - curl(M) =', vecprintsym(trueNproofsym))
     print('')

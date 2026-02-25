@@ -541,3 +541,8 @@ for (xp, yp, zp) in points:
     print('M*mag(k) - curl(N)', vecprint(trueMproof))
     print('N*mag(k) - curl(M)', vecprint(trueNproof))
     print('')
+
+    MN_dot = M.cscalarproduct(N)
+    
+    print('Proof of Orthognality')
+    print('M.N =', cplexprint(MN_dot))

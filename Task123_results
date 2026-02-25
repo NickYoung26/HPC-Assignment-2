@@ -1,0 +1,170 @@
+TESTING VECTOR PROPERTIES (COMPONENTS, MAGNITUDE, UNITS AND DIRECTION ANGLES)
+
+Vector Components are: (3, 5, 6)
+Vector is of magnitude: 8.367
+Unit Vectors are (x, y, z): (0.35856858280031806, 0.5976143046671968, 0.7171371656006361)
+Vector is of direction (alpha, beta, gamma): 68.99, 53.30, 44.18 degrees
+
+#################### TASK 1 TEST ####################
+
+VECTOR PROPERTIES
+
+Vector 2 components and magnitude: (26, -28, 26) of magnitude 46.217
+Vector 3 components and magnitude:(3, -41, 36) of magnitude 54.644
+
+VECTOR OPERATIONS
+
+Addition = (29, -69, 62)
+Subtraction = (-23, -13, 10)
+Scalar Product = 2162.00
+Vector product = (58, -858, -982)
+Vector product magnitude = 1305.32
+Vector product direction = 31.12 degrees
+
+#################### TASK 2 RESULTS ####################
+
+Triangle 1 area = 0.50
+Triangle 1 angles A,B,C = 90.00, 45.00, 45.00 degrees
+
+Triangle 2 area = 0.50
+Triangle 2 angles A,B,C = 90.00, 45.00, 45.00 degrees
+
+Triangle 3 area = 0.50
+Triangle 3 angles A,B,C = 45.00, 45.00, 90.00 degrees
+
+Triangle 4 area = 0.71
+Triangle 4 angles A,B,C = 90.00, 35.26, 54.74 degrees
+
+#################### TASK 3 RESULTS ####################
+
+########## BEGIN EVALUATING FOR DIFFERENT Z VALUES ##########
+(NumPy version)
+########## Points = (0.0,0.0,0.0) ##########
+
+Hansen Vector M = (0.00 + 0.00j, 1.00 + 0.00j, 0.00 + 0.00j)
+Hansen Vector N = (1.00 + 0.00j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+Divergence of M = 0.00 + 0.00j
+Divergence of N = 0.00 + 0.00j
+
+Curl of M = (0.00 - 3.14j, 0.00 + 0.00j, 0.00 + 0.00j)
+Curl of N = (0.00 + 0.00j, 0.00 + 3.14j, 0.00 + 0.00j)
+
+M/mag(k) = (0.00 + 0.00j, 0.32 + 0.00j, 0.00 + 0.00j)
+N/mag(k) = (0.32 + 0.00j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+M/mag(k) - curl(N) (0.00 + 0.00j, 0.32 - 3.14j, 0.00 + 0.00j)
+N/mag(k) - curl(M) (0.32 + 3.14j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+M*mag(k) = (0.00 + 0.00j, 0.00 - 3.14j, 0.00 + 0.00j)
+N*mag(k) = (0.00 + 3.14j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+M*mag(k) - curl(N) (0.00 + 0.00j, 0.00 - 6.28j, 0.00 + 0.00j)
+N*mag(k) - curl(M) (0.00 + 6.28j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+Proof of true orthognality
+MN Dot Product = 0.00 + 0.00j
+
+########## Points = (0.0,0.0,0.5) ##########
+
+Hansen Vector M = (0.00 + 0.00j, 0.00 + 1.00j, 0.00 + 0.00j)
+Hansen Vector N = (0.00 + 1.00j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+Divergence of M = 0.00 + 0.00j
+Divergence of N = 0.00 + 0.00j
+
+Curl of M = (3.14 + 0.00j, 0.00 + 0.00j, 0.00 + 0.00j)
+Curl of N = (0.00 + 0.00j, -3.14 + 0.00j, 0.00 + 0.00j)
+
+M/mag(k) = (0.00 + 0.00j, 0.00 + 0.32j, 0.00 + 0.00j)
+N/mag(k) = (0.00 + 0.32j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+M/mag(k) - curl(N) (0.00 + 0.00j, 3.14 + 0.32j, 0.00 + 0.00j)
+N/mag(k) - curl(M) (-3.14 + 0.32j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+M*mag(k) = (0.00 + 0.00j, 3.14 - 0.00j, 0.00 + 0.00j)
+N*mag(k) = (-3.14 + 0.00j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+M*mag(k) - curl(N) (0.00 + 0.00j, 6.28 - 0.00j, 0.00 + 0.00j)
+N*mag(k) - curl(M) (-6.28 + 0.00j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+Proof of true orthognality
+MN Dot Product = 0.00 + 0.00j
+
+########## Points = (0.0,0.0,1.0) ##########
+
+Hansen Vector M = (0.00 + 0.00j, -1.00 + 0.00j, 0.00 + 0.00j)
+Hansen Vector N = (-1.00 + 0.00j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+Divergence of M = 0.00 + 0.00j
+Divergence of N = 0.00 + 0.00j
+
+Curl of M = (0.00 + 3.14j, 0.00 + 0.00j, 0.00 + 0.00j)
+Curl of N = (0.00 + 0.00j, 0.00 - 3.14j, 0.00 + 0.00j)
+
+M/mag(k) = (0.00 + 0.00j, -0.32 + 0.00j, 0.00 + 0.00j)
+N/mag(k) = (-0.32 + 0.00j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+M/mag(k) - curl(N) (0.00 + 0.00j, -0.32 + 3.14j, 0.00 + 0.00j)
+N/mag(k) - curl(M) (-0.32 - 3.14j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+M*mag(k) = (0.00 + 0.00j, 0.00 + 3.14j, 0.00 + 0.00j)
+N*mag(k) = (-0.00 - 3.14j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+M*mag(k) - curl(N) (0.00 + 0.00j, 0.00 + 6.28j, 0.00 + 0.00j)
+N*mag(k) - curl(M) (-0.00 - 6.28j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+Proof of true orthognality
+MN Dot Product = 0.00 + 0.00j
+
+########## Points = (0.0,0.0,-1.0) ##########
+
+Hansen Vector M = (0.00 + 0.00j, -1.00 - 0.00j, 0.00 + 0.00j)
+Hansen Vector N = (-1.00 - 0.00j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+Divergence of M = 0.00 + 0.00j
+Divergence of N = 0.00 + 0.00j
+
+Curl of M = (0.00 + 3.14j, 0.00 + 0.00j, 0.00 + 0.00j)
+Curl of N = (0.00 + 0.00j, 0.00 - 3.14j, 0.00 + 0.00j)
+
+M/mag(k) = (0.00 + 0.00j, -0.32 - 0.00j, 0.00 + 0.00j)
+N/mag(k) = (-0.32 - 0.00j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+M/mag(k) - curl(N) (0.00 + 0.00j, -0.32 + 3.14j, 0.00 + 0.00j)
+N/mag(k) - curl(M) (-0.32 - 3.14j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+M*mag(k) = (0.00 + 0.00j, -0.00 + 3.14j, 0.00 + 0.00j)
+N*mag(k) = (0.00 - 3.14j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+M*mag(k) - curl(N) (0.00 + 0.00j, -0.00 + 6.28j, 0.00 + 0.00j)
+N*mag(k) - curl(M) (0.00 - 6.28j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+Proof of true orthognality
+MN Dot Product = 0.00 + 0.00j
+
+########## Points = (0.0,0.0,36.8) ##########
+
+Hansen Vector M = (0.00 + 0.00j, -0.81 + 0.59j, 0.00 + 0.00j)
+Hansen Vector N = (-0.81 + 0.59j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+Divergence of M = 0.00 + 0.00j
+Divergence of N = 0.00 + 0.00j
+
+Curl of M = (1.85 + 2.54j, 0.00 + 0.00j, 0.00 + 0.00j)
+Curl of N = (0.00 + 0.00j, -1.85 - 2.54j, 0.00 + 0.00j)
+
+M/mag(k) = (0.00 + 0.00j, -0.26 + 0.19j, 0.00 + 0.00j)
+N/mag(k) = (-0.26 + 0.19j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+M/mag(k) - curl(N) (0.00 + 0.00j, 1.59 + 2.73j, 0.00 + 0.00j)
+N/mag(k) - curl(M) (-2.10 - 2.35j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+M*mag(k) = (0.00 + 0.00j, 1.85 + 2.54j, 0.00 + 0.00j)
+N*mag(k) = (-1.85 - 2.54j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+M*mag(k) - curl(N) (0.00 + 0.00j, 3.69 + 5.08j, 0.00 + 0.00j)
+N*mag(k) - curl(M) (-3.69 - 5.08j, 0.00 + 0.00j, 0.00 + 0.00j)
+
+Proof of true orthognality
+MN Dot Product = 0.00 + 0.00j
