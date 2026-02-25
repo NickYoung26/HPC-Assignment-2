@@ -1,5 +1,29 @@
 #!/opt/software/anaconda/python-3.10.9/bin/python
 
+# =============================================================================
+# MIT License
+#
+# Copyright (c) 2026 Nicholas Young
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+# =============================================================================
+
 """
 Version: Python 3.10.9
 
@@ -12,7 +36,6 @@ Author: Nicholas Young
 
 import math
 import numpy as np # pylint: disable=import-error
-import sympy as sp # pylint: disable=import-error
 
 # CREATING VECTOR CLASS
 
@@ -22,6 +45,8 @@ class Vector:
     Class representing a 3D vector (x,y,z) of direction and magnitude.
     This class also features core vector operations, such as addition,
     subtraction, scalar and vector products.
+
+    Features:
     """
 
     type = "Vector"
@@ -65,27 +90,47 @@ class Vector:
 
         return alpha, beta, gamma
 
-    # VECTOR OPERATIONS
+    # BASIC VECTOR OPERATIONS
 
-    def addition(self, self2):
+    def __add__(self, other):
 
-        "Vector addition operation for two vectors components x,y and z"
+        "Vector addition for two vectors of real components x,y and z."
 
-        xadd = self.xval + self2.xval
-        yadd = self.yval + self2.yval
-        zadd = self.zval + self2.zval
+        return Vector(
+            self.xval + other.xval,
+            self.yval + other.yval,
+            self.zval + other.zval
+            )
 
-        return Vector(xadd, yadd, zadd)
+    def __sub__(self, other):
 
-    def subtraction(self, self2):
+        "Vector subtraction for two vectors of real components x,y and z."
 
-        "Vector subtraction operation for two vectors components x,y and z"
+        return Vector(
+        self.xval - other.xval,
+        self.yval - other.yval,
+        self.zval - other.zval
+        )
 
-        xsub = self2.xval - self.xval
-        ysub = self2.yval - self.yval
-        zsub = self2.zval - self.zval
+    def __mul__(self, other):
 
-        return Vector(xsub, ysub, zsub)
+        "Multiplication of a scalar with a vector."
+
+        return Vector(self.xval * other, self.yval * other, self.zval * other)
+
+    def __rmul__(self, other):
+
+        "Multiplication of a scalar with a vector reversed."
+
+        return self.__mul__(other)
+
+    def __truediv__(self, other):
+
+        "Division of a vector components by a scalar."
+
+        return Vector(self.xval / other, self.yval / other, self.zval / other)
+
+    # PRODUCTS
 
     def scalarproduct(self, self2):
 
@@ -157,7 +202,7 @@ print('#################### TASK 1 TEST ####################')
 def create_vector(d = 3):
 
     """
-    Generates a 3D vector of random x,y and z components 
+    Generates a 3D vector of random x,y and z components
     between a value of -50 and 50
     """
 
@@ -181,8 +226,8 @@ print('')
 print('VECTOR OPERATIONS')
 print('')
 
-vadd32 = v2.addition(v3)
-vsub32 = v2.subtraction(v3)
+vadd32 = v2 + v3
+vsub32 = v3 - v2
 vsp32 = v2.scalarproduct(v3)
 vvp32 = v2.vectorproduct(v3)
 vvpm32 = v2.productmagnitude(v3)
@@ -205,23 +250,23 @@ print('')
 
 ########## TRIANGLE 1 ###########
 
-# CREATE UNIT VECTORS FROM TRIANGLE COORDINATES
+# CREATE VECTORS FROM TRIANGLE COORDINATES
 tri1A = Vector(0,0,0)
 tri1B = Vector(1,0,0)
 tri1C = Vector(0,1,0)
 
 # USE VECTOR GEOMETRY FOR AREA. A = MAGNITUDE (B-A x C-A) * 0.5
-tri1BA = tri1A.subtraction(tri1B)
-tri1CA = tri1A.subtraction(tri1C)
+tri1AB = tri1B - tri1A
+tri1AC = tri1C - tri1A
 
-area1 = tri1BA.productmagnitude(tri1CA) * 0.5
+area1 = tri1AB.productmagnitude(tri1AC) * 0.5
 
 print(f'Triangle 1 area = {area1:.2f}')
 
 # FIND COMPONENTS OF VECTORS CONNECTING THE TRIANGLES
-tri1AB = tri1A.subtraction(tri1B)
-tri1BC = tri1B.subtraction(tri1C)
-tri1CA = tri1C.subtraction(tri1A)
+tri1AB = tri1B - tri1A
+tri1BC = tri1C - tri1B
+tri1CA = tri1A - tri1C
 
 tri1angleB = tri1AB.productdirection(tri1BC)
 tri1angleC = tri1BC.productdirection(tri1CA)
@@ -237,16 +282,16 @@ tri2A = Vector(-1,-1,-1)
 tri2B = Vector(0,-1,-1)
 tri2C = Vector(-1,0,-1)
 
-tri2BA = tri2A.subtraction(tri2B)
-tri2CA = tri2A.subtraction(tri2C)
+tri2AB = tri2B - tri2A
+tri2AC = tri2C - tri2A
 
-area2 = tri2BA.productmagnitude(tri2CA) * 0.5
+area2 = tri2AB.productmagnitude(tri2AC) * 0.5
 
 print(f'Triangle 2 area = {area2:.2f}')
 
-tri2AB = tri2A.subtraction(tri2B)
-tri2BC = tri2B.subtraction(tri2C)
-tri2CA = tri2C.subtraction(tri2A)
+tri2AB = tri2B - tri2A
+tri2BC = tri2C - tri2B
+tri2CA = tri2A - tri2C
 
 tri2angleB = tri2AB.productdirection(tri2BC)
 tri2angleC = tri2BC.productdirection(tri2CA)
@@ -261,16 +306,16 @@ tri3A = Vector(1,0,0)
 tri3B = Vector(0,0,1)
 tri3C = Vector(0,0,0)
 
-tri3BA = tri3A.subtraction(tri3B)
-tri3CA = tri3A.subtraction(tri3C)
+tri3AB = tri3B - tri3A
+tri3AC = tri3C - tri3A
 
-area3 = tri3BA.productmagnitude(tri3CA) * 0.5
+area3 = tri3AB.productmagnitude(tri3AC) * 0.5
 
 print(f'Triangle 3 area = {area3:.2f}')
 
-tri3AB = tri3A.subtraction(tri3B)
-tri3BC = tri3B.subtraction(tri3C)
-tri3CA = tri3C.subtraction(tri3A)
+tri3AB = tri3B - tri3A
+tri3BC = tri3C - tri3B
+tri3CA = tri3A - tri3C
 
 tri3angleB = tri3AB.productdirection(tri3BC)
 tri3angleC = tri3BC.productdirection(tri3CA)
@@ -285,16 +330,16 @@ tri4A = Vector(0,0,0)
 tri4B = Vector(1,-1,0)
 tri4C = Vector(0,0,1)
 
-tri4BA = tri4A.subtraction(tri4B)
-tri4CA = tri4A.subtraction(tri4C)
+tri4AB = tri4B - tri4A
+tri4AC = tri4C - tri4A
 
-area4 = tri4BA.productmagnitude(tri4CA) * 0.5
+area4 = tri4AB.productmagnitude(tri4AC) * 0.5
 
 print(f'Triangle 4 area = {area4:.2f}')
 
-tri4AB = tri4A.subtraction(tri4B)
-tri4BC = tri4B.subtraction(tri4C)
-tri4CA = tri4C.subtraction(tri4A)
+tri4AB = tri4B - tri4A
+tri4BC = tri4C - tri4B
+tri4CA = tri4A - tri4C
 
 tri4angleB = tri4AB.productdirection(tri4BC)
 tri4angleC = tri4BC.productdirection(tri4CA)
@@ -306,6 +351,7 @@ print('')
 ###############################################################################
 ################################### TASK3 #####################################
 ###############################################################################
+#CURL AND DIVERGENCE OF HANSEN VECTORS.
 
 print('#################### TASK 3 RESULTS ####################')
 print('')
@@ -349,13 +395,14 @@ class ComplexVector(Vector):
                 np.conj(self.zval)*self2.zval)
 
     # WHILE CURL AND DIVERGENCE DON'T REQUIRE SELF IT FELT CLEANER TO STORE THEM INSIDE THE CLASS.
-    #THE APPROXIMATION HERE USES VARIBALE 'H'. THIS VALUE MUST BE KEPT AROUND 1E-6 TO MAINTAIN ACCURACY.
+    # THE APPROXIMATION HERE USES VARIBALE 'h'.
+    # THIS VALUE MUST BE KEPT AROUND 1E-6 TO MAINTAIN ACCURACY.
 
     @staticmethod
-    def divergence(f, x, y, z, h=1e-6):
+    def divergence(f, x, y, z, h = 1e-6):
 
         """
-        Divergence of a 3 variable function (x, y, z) using 
+        Divergence of a 3 variable function (x, y, z) using
         the central finite difference approximation.
         """
 
@@ -374,10 +421,10 @@ class ComplexVector(Vector):
         return dfxdx + dfydy + dfzdz
 
     @staticmethod
-    def curl(f, x, y, z, h=1e-6):
+    def curl(f, x, y, z, h = 1e-6):
 
         """
-        Curl of a 3 variable function (x, y, z) using 
+        Curl of a 3 variable function (x, y, z) using
         the central finite difference approximation.
         """
 
@@ -402,7 +449,7 @@ class ComplexVector(Vector):
 def hansen_n(_xm, _ym, zm):
 
     """
-    M Hansen Vector for a plane-polarized electromagnetic wave 
+    M Hansen Vector for a plane-polarized electromagnetic wave
     propagating in vacuum.
     """
 
@@ -413,7 +460,7 @@ def hansen_n(_xm, _ym, zm):
 def hansen_m(_xn, _yn, zn):
 
     """
-    N Hansen Vector for a plane-polarized electromagnetic wave 
+    N Hansen Vector for a plane-polarized electromagnetic wave
     propagating in vacuum.
     """
 
@@ -433,9 +480,14 @@ points = [
 # MAGNITUDE OF VECTOR K = (0, 0, PI)
 k_mag = np.pi
 
+print('########## BEGIN EVALUATING FOR DIFFERENT Z VALUES ##########')
+print('(NumPy version)')
+
+# VALUES TO COMPARE WITH SYMPY CALCULATIONS
+
 for (xp, yp, zp) in points:
 
-    print(f'########## \nPoint (x,y,z) = ({xp},{yp},{zp}) ##########')
+    print(f'########## Points = ({xp},{yp},{zp}) ##########')
     print('')
 
     M = hansen_m(xp, yp, zp)
@@ -466,12 +518,15 @@ for (xp, yp, zp) in points:
     print('N/mag(k) =', vecprint(N_kmag_div))
     print('')
 
-    print('Proof of Lies')
-    print('M/mag(k) - curl(N)', vecprint(M_kmag_div.subtraction(curlN)))
-    print('N/mag(k) - curl(N)', vecprint(N_kmag_div.subtraction(curlM)))
+    falseMproof = M_kmag_div - curlN
+    falseNproof = N_kmag_div - curlM
+
+    print('M/mag(k) - curl(N)', vecprint(falseMproof))
+    print('N/mag(k) - curl(M)', vecprint(falseNproof))
     print('')
 
-   #In the notes it says this should equal but it won't, and its not because of the approximation.
+    # In the assignment notes it says this should be equal but it isn't. This rule is incorrect.
+    # Below we solve the correct expression by working backwards from the previous result.
 
     M_kmag_times = ComplexVector(M.xval*k_mag*-1j, M.yval*k_mag*-1j, M.zval*k_mag*-1j)
     N_kmag_times = ComplexVector(N.xval*k_mag*1j, N.yval*k_mag*1j, N.zval*k_mag*1j)
@@ -480,17 +535,9 @@ for (xp, yp, zp) in points:
     print('N*mag(k) =', vecprint(N_kmag_times))
     print('')
 
-    print('Proof of Truth')
-    print('M*mag(k) - curl(N)', vecprint(curlN.subtraction(M_kmag_times)))
-    print('N*mag(k) - curl(N)', vecprint(curlM.subtraction(N_kmag_times)))
+    trueMproof = M_kmag_times - curlN
+    trueNproof = N_kmag_times - curlM
+
+    print('M*mag(k) - curl(N)', vecprint(trueMproof))
+    print('N*mag(k) - curl(M)', vecprint(trueNproof))
     print('')
-
-    MN_dot = M.cscalarproduct(N)
-    MN_cross = M.vectorproduct(N)
-    MN_cross_mag = MN_cross.magnitude()
-
-    print('Proof its not the vectors (True Orthognality)')
-    print('MN Dot Product =', cxprint(MN_dot))
-
-# AS M AND N DIVIDED BY MAG(K) DOES NOT EQUAL WHAT EXPECTED THIS TASK IS REPEATED USING SYMPY TO VERIFY
-# OUR DIVERGENCE AND CURL FUNCTIONS ARE CORRECT.

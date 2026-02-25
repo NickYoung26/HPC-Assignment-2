@@ -19,6 +19,9 @@
 # Modify the line below to run your program:
 
 # Run properly
+
+module load sympy
+
 ./oopclasses.py
 
 
